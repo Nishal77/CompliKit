@@ -32,13 +32,10 @@ import {
 // ─── Nav ──────────────────────────────────────────────────────────────────────
 function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#05101F]/96 backdrop-blur-xl border-b border-white/[0.05]">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#111415] backdrop-blur-xl border-b border-white/[0.05]">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#0D7377] to-[#0a5f62]">
-            <ShieldCheck className="h-4 w-4 text-white" strokeWidth={2.5} />
-          </div>
-          <span className="text-[15px] font-bold text-white tracking-tight">CompliKit</span>
+          <span className="text-2xl font-bold text-[#FF6900] tracking-tight">CompliKit</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-7">
@@ -61,7 +58,7 @@ function Nav() {
           </Link>
           <Link
             href="/signup"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-[#0D7377] hover:bg-[#0b6568] px-4 py-2 text-[13px] font-bold text-white transition-colors shadow-[0_0_20px_rgba(13,115,119,0.35)]"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#FF6900] hover:bg-[#0b6568] px-4 py-2 text-[13px] font-bold text-white transition-colors shadow-[0_0_20px_rgba(13,115,119,0.35)]"
           >
             Start free — no card
           </Link>
@@ -74,20 +71,7 @@ function Nav() {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative bg-[#05101F] pt-16 overflow-hidden">
-      {/* Grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: `linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px)`,
-          backgroundSize: "52px 52px",
-        }}
-      />
-      {/* Glows */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[1000px] h-[420px] rounded-full bg-[#0D7377]/12 blur-[140px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1B3A6B]/15 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-[#0D7377]/8 blur-[100px] pointer-events-none" />
-
+    <section className="relative bg-[#111415] pt-16 overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6 py-28 text-center">
 
         {/* Eyebrow — keyword-rich, trust signal */}
@@ -99,12 +83,11 @@ function Hero() {
         </div>
 
         {/* H1 — SEO keyword-anchored + creative + competitive */}
-        <h1 className="mx-auto max-w-[800px] text-[52px] sm:text-[66px] lg:text-[76px] font-bold text-white leading-[1.04] tracking-[-0.02em]">
+        <h1 className="mx-auto  text-[52px] sm:text-[66px] lg:text-7xl font-semibold text-white leading-[1.04] tracking-[-0.02em]">
           Enterprise deals don&apos;t wait
           <br />
           <span
-            className="text-transparent bg-clip-text"
-            style={{ backgroundImage: "linear-gradient(135deg, #14b8b0 0%, #0ea5a0 50%, #0D7377 100%)" }}
+            className="text-[#FF6900]"
           >
             for your SOC 2 report.
           </span>
@@ -150,61 +133,9 @@ function Hero() {
           <span className="text-[13px] text-white/45">Cancel anytime</span>
         </div>
 
-        {/* Pain anchors — 3-column trust proof */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          {[
-            {
-              icon: DollarSign,
-              headline: "Others charge $10,000/yr.",
-              sub: "CompliKit costs $99/mo. Same SOC 2 report. No enterprise sales call required.",
-              color: "border-red-500/20 bg-red-500/5",
-              iconColor: "text-red-400",
-            },
-            {
-              icon: Timer,
-              headline: "Audit-ready in 3 weeks.",
-              sub: "Not 6 months. AI generates all 10 policies in minutes, not weeks of manual writing.",
-              color: "border-[#0D7377]/30 bg-[#0D7377]/8",
-              iconColor: "text-[#14b8b0]",
-            },
-            {
-              icon: BadgeCheck,
-              headline: "Built for startups only.",
-              sub: "Every competitor targets Fortune 500. CompliKit is designed for 3–25 person teams.",
-              color: "border-amber-500/20 bg-amber-500/5",
-              iconColor: "text-amber-400",
-            },
-          ].map(({ icon: Icon, headline, sub, color, iconColor }) => (
-            <div key={headline} className={`rounded-2xl border ${color} p-5 text-left`}>
-              <Icon className={`h-5 w-5 ${iconColor} mb-3`} />
-              <p className="text-[14px] font-bold text-white mb-1.5">{headline}</p>
-              <p className="text-[12px] text-white/45 leading-relaxed">{sub}</p>
-            </div>
-          ))}
-        </div>
+
       </div>
 
-      {/* Stat strip */}
-      <div className="border-t border-white/[0.05] bg-white/[0.015]">
-        <div className="mx-auto max-w-7xl px-6 py-8">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-widest text-white/20 mb-7">
-            Trusted by early-stage B2B SaaS teams closing enterprise deals
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/[0.05] rounded-xl overflow-hidden">
-            {[
-              { value: "36", label: "SOC 2 controls covered" },
-              { value: "< 3 wks", label: "average to Type 1 ready" },
-              { value: "$99/mo", label: "vs $800+/mo enterprise average" },
-              { value: "10×", label: "cheaper than the alternatives" },
-            ].map(({ value, label }) => (
-              <div key={label} className="bg-white/[0.025] px-6 py-6 text-center">
-                <div className="text-[28px] font-bold text-white">{value}</div>
-                <div className="mt-1 text-[12px] text-white/40">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
@@ -586,16 +517,16 @@ function TrustSignals() {
 // ─── Comparison ───────────────────────────────────────────────────────────────
 function Comparison() {
   const rows = [
-    { feature: "Annual cost",              complikit: "$1,188/yr (Starter)",  enterprise: "$10,000–15,000/yr",  diy: "Uncountable hours",   winner: "complikit" },
-    { feature: "Transparent pricing",      complikit: true,                   enterprise: "Demo call required",  diy: "No pricing to hide",  winner: "complikit" },
-    { feature: "Free trial (no card)",     complikit: "14 days",              enterprise: false,                 diy: true,                  winner: "complikit" },
-    { feature: "AI policy generation",     complikit: true,                   enterprise: "Add-on cost",         diy: false,                 winner: "complikit" },
-    { feature: "Setup time",               complikit: "< 5 minutes",          enterprise: "Days of onboarding",  diy: "Weeks",               winner: "complikit" },
-    { feature: "Built for startups",       complikit: true,                   enterprise: false,                 diy: true,                  winner: "complikit" },
-    { feature: "Questionnaire AI",         complikit: true,                   enterprise: "Add-on cost",         diy: false,                 winner: "complikit" },
-    { feature: "All 36 SOC 2 controls",    complikit: "All 36 TSC",           enterprise: true,                  diy: "Manual research",     winner: "complikit" },
-    { feature: "Audit-ready PDF report",   complikit: true,                   enterprise: true,                  diy: "Build it yourself",   winner: "neutral"   },
-    { feature: "Time to first SOC 2",      complikit: "2–4 weeks",            enterprise: "6–12 weeks",          diy: "3–6 months",          winner: "complikit" },
+    { feature: "Annual cost", complikit: "$1,188/yr (Starter)", enterprise: "$10,000–15,000/yr", diy: "Uncountable hours", winner: "complikit" },
+    { feature: "Transparent pricing", complikit: true, enterprise: "Demo call required", diy: "No pricing to hide", winner: "complikit" },
+    { feature: "Free trial (no card)", complikit: "14 days", enterprise: false, diy: true, winner: "complikit" },
+    { feature: "AI policy generation", complikit: true, enterprise: "Add-on cost", diy: false, winner: "complikit" },
+    { feature: "Setup time", complikit: "< 5 minutes", enterprise: "Days of onboarding", diy: "Weeks", winner: "complikit" },
+    { feature: "Built for startups", complikit: true, enterprise: false, diy: true, winner: "complikit" },
+    { feature: "Questionnaire AI", complikit: true, enterprise: "Add-on cost", diy: false, winner: "complikit" },
+    { feature: "All 36 SOC 2 controls", complikit: "All 36 TSC", enterprise: true, diy: "Manual research", winner: "complikit" },
+    { feature: "Audit-ready PDF report", complikit: true, enterprise: true, diy: "Build it yourself", winner: "neutral" },
+    { feature: "Time to first SOC 2", complikit: "2–4 weeks", enterprise: "6–12 weeks", diy: "3–6 months", winner: "complikit" },
   ];
 
   function Cell({ value, highlight }: { value: string | boolean; highlight?: boolean }) {
@@ -837,11 +768,10 @@ function Pricing() {
           {plans.map(({ name, price, period, vsNote, description, cta, href, popular, features, missing }) => (
             <div
               key={name}
-              className={`rounded-2xl p-8 relative ${
-                popular
-                  ? "bg-[#05101F] ring-2 ring-[#0D7377] shadow-[0_0_80px_rgba(13,115,119,0.25)]"
-                  : "bg-white border border-slate-200"
-              }`}
+              className={`rounded-2xl p-8 relative ${popular
+                ? "bg-[#05101F] ring-2 ring-[#0D7377] shadow-[0_0_80px_rgba(13,115,119,0.25)]"
+                : "bg-white border border-slate-200"
+                }`}
             >
               {popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -871,11 +801,10 @@ function Pricing() {
 
               <Link
                 href={href}
-                className={`flex w-full items-center justify-center rounded-xl py-3.5 text-[14px] font-bold transition-all ${
-                  popular
-                    ? "bg-[#0D7377] hover:bg-[#0b6568] text-white shadow-lg"
-                    : "border border-slate-200 bg-white hover:bg-slate-50 text-[#05101F]"
-                }`}
+                className={`flex w-full items-center justify-center rounded-xl py-3.5 text-[14px] font-bold transition-all ${popular
+                  ? "bg-[#0D7377] hover:bg-[#0b6568] text-white shadow-lg"
+                  : "border border-slate-200 bg-white hover:bg-slate-50 text-[#05101F]"
+                  }`}
               >
                 {cta}
               </Link>
