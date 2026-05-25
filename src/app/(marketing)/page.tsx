@@ -46,7 +46,7 @@ function Nav() {
             ["Features", "#features"],
             ["How it works", "#how-it-works"],
             ["Pricing", "#pricing"],
-            ["vs Vanta", "#compare"],
+            ["Why CompliKit", "#compare"],
             ["FAQ", "#faq"],
           ].map(([label, href]) => (
             <Link key={label} href={href} className="text-[13px] font-medium text-white/55 hover:text-white transition-colors">
@@ -114,7 +114,7 @@ function Hero() {
         <p className="mx-auto mt-7 max-w-[600px] text-[17px] text-white/55 leading-relaxed">
           CompliKit is the SOC 2 compliance software built for startups — not Fortune 500 companies.
           Get audit-ready in <strong className="text-white/80 font-semibold">3 weeks</strong>, at{" "}
-          <strong className="text-white/80 font-semibold">1/10th the cost of Vanta</strong>.
+          <strong className="text-white/80 font-semibold">a fraction of what enterprise platforms charge</strong>.
           AI-generated policies, guided control tracking, and a full audit-ready report.
         </p>
 
@@ -155,8 +155,8 @@ function Hero() {
           {[
             {
               icon: DollarSign,
-              headline: "Vanta costs $10,000/yr.",
-              sub: "CompliKit costs $99/mo. Same SOC 2 report. No enterprise sales call.",
+              headline: "Others charge $10,000/yr.",
+              sub: "CompliKit costs $99/mo. Same SOC 2 report. No enterprise sales call required.",
               color: "border-red-500/20 bg-red-500/5",
               iconColor: "text-red-400",
             },
@@ -194,8 +194,8 @@ function Hero() {
             {[
               { value: "36", label: "SOC 2 controls covered" },
               { value: "< 3 wks", label: "average to Type 1 ready" },
-              { value: "$99/mo", label: "vs $833/mo for Vanta" },
-              { value: "10×", label: "cheaper than the market" },
+              { value: "$99/mo", label: "vs $800+/mo enterprise average" },
+              { value: "10×", label: "cheaper than the alternatives" },
             ].map(({ value, label }) => (
               <div key={label} className="bg-white/[0.025] px-6 py-6 text-center">
                 <div className="text-[28px] font-bold text-white">{value}</div>
@@ -266,7 +266,7 @@ function WhatWeDo() {
                 after: "SOC 2 report in hand. Security reviews become a competitive advantage.",
               },
               {
-                before: "Vanta quote arrives: $10,000+/year before you've even seen the product.",
+                before: "Enterprise platform quote arrives: $10,000+/year before you've even seen the product.",
                 after: "CompliKit Starter: $99/month. Full SOC 2 compliance. Real audit-ready output.",
               },
               {
@@ -504,7 +504,7 @@ function TrustSignals() {
           {[
             { stat: "$48k", context: "ARR deal closed within 2 weeks of SOC 2 Type 1", icon: TrendingUp, color: "text-emerald-600" },
             { stat: "3 wks", context: "average time from zero to SOC 2 Type 1 audit-ready", icon: Timer, color: "text-[#0D7377]" },
-            { stat: "$9,200", context: "saved per year vs Vanta Starter plan", icon: DollarSign, color: "text-blue-600" },
+            { stat: "$9,200", context: "saved per year vs enterprise platform pricing", icon: DollarSign, color: "text-blue-600" },
             { stat: "4 hrs", context: "saved per deal cycle using Questionnaire AI", icon: Zap, color: "text-amber-600" },
           ].map(({ stat, context, icon: Icon, color }) => (
             <div key={stat} className="text-center p-6 rounded-2xl bg-slate-50 border border-slate-100">
@@ -536,11 +536,11 @@ function TrustSignals() {
               initials: "SC",
             },
             {
-              quote: "Vanta quoted us $11,400/year. I nearly fell off my chair. We're a 9-person startup. CompliKit was $99/month, generated our policies in 20 minutes tailored to our AWS stack, and our auditor said the evidence package was the most organized he'd ever received.",
+              quote: "We got quoted $11,400/year for a compliance platform. I nearly fell off my chair — we're a 9-person startup. CompliKit was $99/month, generated our policies in 20 minutes tailored to our AWS stack, and our auditor said our evidence package was the most organized he'd ever received.",
               name: "Marcus Reid",
               title: "CTO, Synapse Labs",
               stars: 5,
-              outcome: "Saved $10k vs Vanta",
+              outcome: "Saved $10k on compliance",
               initials: "MR",
             },
             {
@@ -583,28 +583,28 @@ function TrustSignals() {
   );
 }
 
-// ─── Comparison (vs Vanta / Drata) ────────────────────────────────────────────
+// ─── Comparison ───────────────────────────────────────────────────────────────
 function Comparison() {
   const rows = [
-    { feature: "Annual cost", complikit: "$1,188/yr (Starter)", vanta: "$10,000–15,000/yr", drata: "$10,000–12,000/yr", winner: "complikit" },
-    { feature: "Transparent pricing", complikit: true, vanta: "Demo required", drata: "Demo required", winner: "complikit" },
-    { feature: "Free trial (no card)", complikit: "14 days", vanta: false, drata: false, winner: "complikit" },
-    { feature: "AI policy generation", complikit: true, vanta: "Add-on cost", drata: "Limited", winner: "complikit" },
-    { feature: "Setup time", complikit: "< 5 minutes", vanta: "Days", drata: "Days", winner: "complikit" },
-    { feature: "Built for startups", complikit: true, vanta: false, drata: false, winner: "complikit" },
-    { feature: "Questionnaire AI", complikit: true, vanta: "Add-on", drata: "Add-on", winner: "complikit" },
-    { feature: "All 36 SOC 2 controls", complikit: "All 36 TSC", vanta: true, drata: true, winner: "neutral" },
-    { feature: "GitHub auto-evidence", complikit: "Growth plan", vanta: true, drata: true, winner: "neutral" },
-    { feature: "Enterprise integrations", complikit: "3 (Growth)", vanta: "200+", drata: "100+", winner: "neutral" },
+    { feature: "Annual cost",              complikit: "$1,188/yr (Starter)",  enterprise: "$10,000–15,000/yr",  diy: "Uncountable hours",   winner: "complikit" },
+    { feature: "Transparent pricing",      complikit: true,                   enterprise: "Demo call required",  diy: "No pricing to hide",  winner: "complikit" },
+    { feature: "Free trial (no card)",     complikit: "14 days",              enterprise: false,                 diy: true,                  winner: "complikit" },
+    { feature: "AI policy generation",     complikit: true,                   enterprise: "Add-on cost",         diy: false,                 winner: "complikit" },
+    { feature: "Setup time",               complikit: "< 5 minutes",          enterprise: "Days of onboarding",  diy: "Weeks",               winner: "complikit" },
+    { feature: "Built for startups",       complikit: true,                   enterprise: false,                 diy: true,                  winner: "complikit" },
+    { feature: "Questionnaire AI",         complikit: true,                   enterprise: "Add-on cost",         diy: false,                 winner: "complikit" },
+    { feature: "All 36 SOC 2 controls",    complikit: "All 36 TSC",           enterprise: true,                  diy: "Manual research",     winner: "complikit" },
+    { feature: "Audit-ready PDF report",   complikit: true,                   enterprise: true,                  diy: "Build it yourself",   winner: "neutral"   },
+    { feature: "Time to first SOC 2",      complikit: "2–4 weeks",            enterprise: "6–12 weeks",          diy: "3–6 months",          winner: "complikit" },
   ];
 
   function Cell({ value, highlight }: { value: string | boolean; highlight?: boolean }) {
     if (value === true)
-      return <Check className={`h-5 w-5 mx-auto ${highlight ? "text-[#0D7377]" : "text-emerald-500"}`} />;
+      return <Check className={`h-5 w-5 mx-auto ${highlight ? "text-[#14b8b0]" : "text-emerald-400"}`} />;
     if (value === false)
-      return <X className="h-5 w-5 text-slate-300 mx-auto" />;
+      return <X className="h-5 w-5 text-white/20 mx-auto" />;
     return (
-      <span className={`text-[13px] ${highlight ? "font-semibold text-[#0D7377]" : "text-slate-600"}`}>
+      <span className={`text-[13px] ${highlight ? "font-bold text-[#14b8b0]" : "text-white/45"}`}>
         {value}
       </span>
     );
@@ -615,14 +615,15 @@ function Comparison() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="mb-12 text-center">
           <span className="inline-block text-[11px] font-bold uppercase tracking-widest text-[#14b8b0] mb-3">
-            CompliKit vs Vanta vs Drata
+            Why CompliKit
           </span>
           <h2 className="text-[40px] sm:text-[50px] font-bold text-white leading-tight tracking-tight">
-            Same SOC 2 report. 10× cheaper.
+            Same SOC 2 report.
+            <span className="text-[#14b8b0]"> A fraction of the cost.</span>
           </h2>
           <p className="mt-4 text-[16px] text-white/45 max-w-xl mx-auto">
-            Vanta and Drata are great products — for 200-person companies. CompliKit is built for
-            startups who can&apos;t spend $10k before they&apos;ve even found product-market fit.
+            Enterprise compliance platforms were designed for 200-person companies with dedicated
+            security teams. CompliKit was designed for founders who just need to close the deal.
           </p>
         </div>
 
@@ -630,26 +631,30 @@ function Comparison() {
           <table className="w-full text-left">
             <thead className="bg-white/[0.04] border-b border-white/[0.07]">
               <tr>
-                <th className="px-6 py-4 text-[12px] font-semibold text-white/30 uppercase tracking-wider">Feature</th>
+                <th className="px-6 py-4 text-[12px] font-semibold text-white/25 uppercase tracking-wider">Feature</th>
                 <th className="px-6 py-4 text-center bg-[#0D7377]/15">
                   <div className="flex flex-col items-center gap-1">
                     <span className="text-[13px] font-bold text-white">CompliKit</span>
-                    <span className="text-[10px] font-bold text-[#14b8b0] bg-[#0D7377]/20 rounded-full px-2 py-0.5">Best for startups</span>
+                    <span className="text-[10px] font-bold text-[#14b8b0] bg-[#0D7377]/20 rounded-full px-2 py-0.5">Built for startups</span>
                   </div>
                 </th>
-                <th className="px-6 py-4 text-[13px] font-semibold text-white/30 text-center">Vanta</th>
-                <th className="px-6 py-4 text-[13px] font-semibold text-white/30 text-center">Drata</th>
+                <th className="px-6 py-4 text-center">
+                  <span className="text-[13px] font-semibold text-white/30">Enterprise Tools</span>
+                </th>
+                <th className="px-6 py-4 text-center">
+                  <span className="text-[13px] font-semibold text-white/30">DIY Approach</span>
+                </th>
               </tr>
             </thead>
             <tbody>
-              {rows.map(({ feature, complikit, vanta, drata, winner }, i) => (
+              {rows.map(({ feature, complikit, enterprise, diy, winner }, i) => (
                 <tr key={feature} className={`border-b border-white/[0.04] last:border-0 ${i % 2 === 1 ? "bg-white/[0.015]" : ""}`}>
-                  <td className="px-6 py-3.5 text-[13px] text-white/55 font-medium">{feature}</td>
+                  <td className="px-6 py-3.5 text-[13px] text-white/50 font-medium">{feature}</td>
                   <td className="px-6 py-3.5 text-center bg-[#0D7377]/[0.06]">
                     <Cell value={complikit} highlight={winner === "complikit"} />
                   </td>
-                  <td className="px-6 py-3.5 text-center"><Cell value={vanta} /></td>
-                  <td className="px-6 py-3.5 text-center"><Cell value={drata} /></td>
+                  <td className="px-6 py-3.5 text-center"><Cell value={enterprise} /></td>
+                  <td className="px-6 py-3.5 text-center"><Cell value={diy} /></td>
                 </tr>
               ))}
             </tbody>
@@ -661,9 +666,9 @@ function Comparison() {
             href="/signup"
             className="inline-flex items-center gap-2 rounded-xl bg-[#0D7377] hover:bg-[#0b6568] px-7 py-3.5 text-[14px] font-bold text-white transition-all shadow-[0_0_30px_rgba(13,115,119,0.4)]"
           >
-            Start free — see why startups choose CompliKit <ArrowRight className="h-4 w-4" />
+            Start free — no card needed <ArrowRight className="h-4 w-4" />
           </Link>
-          <p className="mt-3 text-[12px] text-white/25">No credit card. 14-day trial. Cancel anytime.</p>
+          <p className="mt-3 text-[12px] text-white/25">14-day trial. Cancel anytime. Your data is always yours.</p>
         </div>
       </div>
     </section>
@@ -773,7 +778,7 @@ function Pricing() {
       name: "Starter",
       price: "$99",
       period: "/month",
-      vsNote: "vs $833/mo for Vanta",
+      vsNote: "vs $800+/mo for enterprise tools",
       description: "Everything a seed-stage startup needs to get SOC 2 Type 1 audit-ready. Most popular choice.",
       cta: "Start 14-day free trial",
       href: "/signup",
@@ -793,7 +798,7 @@ function Pricing() {
       name: "Growth",
       price: "$199",
       period: "/month",
-      vsNote: "vs $1,000+/mo for Drata",
+      vsNote: "vs $1,000+/mo for alternatives",
       description: "Automated evidence + integrations for teams that need SOC 2 Type 2 continuous compliance.",
       cta: "Start 14-day free trial",
       href: "/signup",
@@ -823,7 +828,7 @@ function Pricing() {
             <span className="text-[#0D7377]">No sales call. No surprise invoice.</span>
           </h2>
           <p className="mt-4 text-[16px] text-slate-500 max-w-xl mx-auto">
-            Vanta will make you sit through a demo to find out it costs $10,000/year.
+            Most compliance platforms make you sit through a demo before revealing the price.
             We just show you the number. Starter is $99/month. That&apos;s it.
           </p>
         </div>
@@ -922,8 +927,8 @@ function FAQ() {
       a: "CompliKit is a SOC 2 compliance software platform built for startups and small B2B SaaS teams. It helps you get SOC 2 audit-ready by: (1) using AI to generate all 10 required SOC 2 policies tailored to your tech stack, (2) guiding you through all 36 SOC 2 Trust Services Criteria controls with startup-specific steps, (3) organizing your evidence, and (4) producing an audit-ready PDF report you can hand to a CPA auditor.",
     },
     {
-      q: "How is CompliKit different from Vanta or Drata?",
-      a: "Vanta costs $10,000–15,000/year and Drata costs $10,000–12,000/year — both built for companies with 25–500+ employees and dedicated compliance teams. CompliKit starts at $99/month and is designed specifically for seed-to-Series-A startups with 3–25 people. Same SOC 2 report. 10× cheaper. No enterprise sales process to endure just to see the price.",
+      q: "How is CompliKit different from other SOC 2 compliance platforms?",
+      a: "Most compliance platforms cost $10,000–15,000/year and were built for companies with 25–500+ employees and dedicated compliance teams. CompliKit starts at $99/month and is designed specifically for seed-to-Series-A startups with 3–25 people. Same SOC 2 report. A fraction of the cost. No enterprise sales process to endure just to see the price.",
     },
     {
       q: "How long does it take to get SOC 2 Type 1 audit-ready with CompliKit?",
@@ -1011,7 +1016,7 @@ function FinalCTA() {
         </h2>
         <p className="mt-6 text-[17px] text-white/50 max-w-xl mx-auto leading-relaxed">
           Join startups using CompliKit to get SOC 2 audit-ready in weeks, close enterprise deals,
-          and outpace competitors still waiting for their $10,000 Vanta quote.
+          and outpace the competition without spending $10,000 on an enterprise platform.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -1062,7 +1067,7 @@ function Footer() {
         ["SOC 2 Type 2", "#solutions"],
         ["For Startups", "#"],
         ["For Series A Teams", "#"],
-        ["vs Vanta", "#compare"],
+        ["Why CompliKit", "#compare"],
       ],
     },
     {

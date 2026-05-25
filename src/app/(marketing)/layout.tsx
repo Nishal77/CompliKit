@@ -3,30 +3,30 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "SOC 2 Compliance Software for Startups — CompliKit",
   description:
-    "CompliKit is the SOC 2 compliance platform built for startups. Get audit-ready in 3 weeks with AI-generated policies, 36-control tracking, and automated evidence collection. Starting at $99/mo — 10× cheaper than Vanta.",
+    "CompliKit is the SOC 2 compliance platform built for startups. Get audit-ready in 3 weeks with AI-generated policies, 36-control tracking, and automated evidence collection. Starting at $99/mo.",
   keywords: [
     "SOC 2 compliance for startups",
     "SOC 2 compliance software",
-    "Vanta alternative",
-    "Drata alternative",
     "affordable SOC 2 compliance",
+    "SOC 2 compliance platform",
     "SOC 2 audit preparation",
     "SOC 2 Type 1",
     "SOC 2 Type 2",
     "SOC 2 policies template",
     "SOC 2 compliance tool",
+    "SOC 2 certification startup",
   ],
   openGraph: {
     title: "SOC 2 in weeks, not months — CompliKit",
     description:
-      "AI-powered SOC 2 compliance platform for B2B SaaS startups. $99/mo vs $10,000/yr for Vanta. Audit-ready in under 4 weeks.",
+      "AI-powered SOC 2 compliance platform for B2B SaaS startups. Starting at $99/mo. Audit-ready in under 4 weeks.",
     type: "website",
     url: "https://complikit.io",
   },
   twitter: {
     card: "summary_large_image",
     title: "SOC 2 compliance for startups — CompliKit",
-    description: "Get SOC 2 audit-ready in 3 weeks. AI policies, 36-control tracker, evidence vault. 1/10th the cost of Vanta.",
+    description: "Get SOC 2 audit-ready in 3 weeks. AI policies, 36-control tracker, evidence vault. Starting at $99/mo.",
   },
 };
 
@@ -45,7 +45,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                 name: "CompliKit",
                 url: "https://complikit.io",
                 description:
-                  "SOC 2 compliance software for startups. AI-generated policies, control tracking, and audit-ready reports at 1/10th the cost of Vanta.",
+                  "SOC 2 compliance software for startups. AI-generated policies, control tracking, and audit-ready reports starting at $99/month.",
                 foundingDate: "2024",
                 sameAs: [],
               },
@@ -81,10 +81,10 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                   },
                   {
                     "@type": "Question",
-                    name: "How is CompliKit different from Vanta or Drata?",
+                    name: "How is CompliKit different from other SOC 2 compliance platforms?",
                     acceptedAnswer: {
                       "@type": "Answer",
-                      text: "Vanta costs $10,000–15,000/year and Drata costs $10,000–12,000/year — both built for companies with 25–500+ employees. CompliKit starts at $99/month, designed specifically for seed-to-Series-A startups with 3–25 people. Same SOC 2 report. 10× cheaper.",
+                      text: "Most enterprise compliance platforms cost $10,000–15,000/year and are built for companies with 25–500+ employees. CompliKit starts at $99/month, designed specifically for seed-to-Series-A startups with 3–25 people. Same SOC 2 report. A fraction of the cost.",
                     },
                   },
                   {
