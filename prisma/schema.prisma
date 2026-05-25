@@ -1,0 +1,329 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Organization ─────────────────────────────────────────────────────────────
+model Organization {
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  website       String?
+  industry      String?
+  employeeCount String?
+  techStack     String[]
+  frameworks    String[]
+  plan          Plan     @default(FREE)
+  stripeCustomerId     String? @unique
+  stripeSubscriptionId String? @unique
+  trialEndsAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  members       OrganizationMember[]
+  policies      Policy[]
+  controls      ControlInstance[]
+  evidenceItems EvidenceItem[]
+  vendors       Vendor[]
+  reports       AuditReport[]
+  invites       Invite[]
+  integrations  Integration[]
+
+  @@map("organizations")
+}
+
+enum Plan {
+  FREE
+  STARTER
+  GROWTH
+  PRO
+}
+
+// ─── User ─────────────────────────────────────────────────────────────────────
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  username  String?  @unique
+  firstName String?
+  lastName  String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  memberships OrganizationMember[]
+  activities  ActivityLog[]
+
+  @@map("users")
+}
+
+// ─── Org membership ───────────────────────────────────────────────────────────
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  role           OrgRole  @default(MEMBER)
+  joinedAt       DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@map("organization_members")
+}
+
+enum OrgRole {
+  OWNER
+  ADMIN
+  MEMBER
+  AUDITOR
+}
+
+// ─── Invite ───────────────────────────────────────────────────────────────────
+model Invite {
+  id             String    @id @default(cuid())
+  organizationId String
+  email          String
+  role           OrgRole   @default(MEMBER)
+  token          String    @unique @default(cuid())
+  expiresAt      DateTime
+  acceptedAt     DateTime?
+  createdAt      DateTime  @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("invites")
+}
+
+// ─── Policy ───────────────────────────────────────────────────────────────────
+model Policy {
+  id             String       @id @default(cuid())
+  organizationId String
+  templateKey    String
+  title          String
+  content        String       @db.Text
+  status         PolicyStatus @default(DRAFT)
+  version        Int          @default(1)
+  approvedBy     String?
+  approvedAt     DateTime?
+  reviewDueAt    DateTime?
+  s3Key          String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  organization Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  versions     PolicyVersion[]
+
+  @@unique([organizationId, templateKey])
+  @@map("policies")
+}
+
+enum PolicyStatus {
+  DRAFT
+  REVIEW
+  APPROVED
+  OUTDATED
+}
+
+model PolicyVersion {
+  id        String   @id @default(cuid())
+  policyId  String
+  version   Int
+  content   String   @db.Text
+  changedBy String
+  createdAt DateTime @default(now())
+
+  policy Policy @relation(fields: [policyId], references: [id], onDelete: Cascade)
+
+  @@map("policy_versions")
+}
+
+// ─── SOC 2 Control Instance ───────────────────────────────────────────────────
+model ControlInstance {
+  id             String        @id @default(cuid())
+  organizationId String
+  controlId      String
+  status         ControlStatus @default(NOT_STARTED)
+  ownerId        String?
+  notes          String?       @db.Text
+  dueDate        DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  organization  Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  evidenceItems EvidenceItem[]
+
+  @@unique([organizationId, controlId])
+  @@map("control_instances")
+}
+
+enum ControlStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  NEEDS_REVIEW
+  COMPLETE
+  NOT_APPLICABLE
+}
+
+// ─── Evidence Item ────────────────────────────────────────────────────────────
+model EvidenceItem {
+  id                String       @id @default(cuid())
+  organizationId    String
+  controlInstanceId String?
+  title             String
+  description       String?
+  evidenceType      EvidenceType
+  s3Key             String?
+  fileName          String?
+  fileSize          Int?
+  mimeType          String?
+  url               String?
+  collectedAt       DateTime     @default(now())
+  collectedBy       String
+  expiresAt         DateTime?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  controlInstance ControlInstance? @relation(fields: [controlInstanceId], references: [id])
+
+  @@map("evidence_items")
+}
+
+enum EvidenceType {
+  FILE
+  LINK
+  TEXT
+  SCREENSHOT
+}
+
+// ─── Vendor ───────────────────────────────────────────────────────────────────
+model Vendor {
+  id             String    @id @default(cuid())
+  organizationId String
+  name           String
+  website        String?
+  category       String
+  riskLevel      RiskLevel @default(MEDIUM)
+  dataAccess     Boolean   @default(false)
+  subprocessor   Boolean   @default(false)
+  dpaInPlace     Boolean   @default(false)
+  dpaUrl         String?
+  reviewedAt     DateTime?
+  nextReviewAt   DateTime?
+  notes          String?   @db.Text
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("vendors")
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+// ─── Audit Report ─────────────────────────────────────────────────────────────
+model AuditReport {
+  id             String   @id @default(cuid())
+  organizationId String
+  title          String
+  generatedAt    DateTime @default(now())
+  generatedBy    String
+  s3Key          String?
+  readinessScore Int
+  snapshot       Json
+  expiresAt      DateTime
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("audit_reports")
+}
+
+// ─── Integration ──────────────────────────────────────────────────────────────
+model Integration {
+  id             String              @id @default(cuid())
+  organizationId String
+  provider       IntegrationProvider
+  status         IntegrationStatus   @default(PENDING)
+  accessToken    String?             @db.Text
+  refreshToken   String?             @db.Text
+  externalId     String?
+  metadata       Json?
+  lastSyncedAt   DateTime?
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, provider])
+  @@map("integrations")
+}
+
+enum IntegrationProvider {
+  GITHUB
+  AWS
+  GOOGLE_WORKSPACE
+  SLACK
+  JIRA
+  LINEAR
+  NOTION
+}
+
+enum IntegrationStatus {
+  PENDING
+  CONNECTED
+  ERROR
+  DISCONNECTED
+}
+
+// ─── Activity Log ─────────────────────────────────────────────────────────────
+model ActivityLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  action         String
+  entityType     String?
+  entityId       String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([organizationId, createdAt])
+  @@map("activity_logs")
+}
+
+// ─── Questionnaire ────────────────────────────────────────────────────────────
+model QuestionnaireTemplate {
+  id             String   @id @default(cuid())
+  organizationId String?
+  name           String
+  questions      Json
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("questionnaire_templates")
+}
+
+model QuestionnaireResponse {
+  id             String   @id @default(cuid())
+  organizationId String
+  templateId     String?
+  name           String
+  answers        Json
+  status         String   @default("DRAFT")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("questionnaire_responses")
+}
